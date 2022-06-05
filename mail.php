@@ -12,6 +12,9 @@ $headers = "From: lalitkumar971088@gmail.com" . "\r\n";
 if($email!=NULL){
     mail($to,$subject,$txt,$headers);
 }
+else{
+    alert("failed")
+}
 // //redirect
 // header("Location:thankyou.html");
 ?>
