@@ -23,7 +23,7 @@ try {
 	$mail->SMTPSecure = 'tls';							
 	$mail->Port	 = 587;
 
-	$mail->setFrom('.com', 'Name');		
+	$mail->setFrom('hansrajmaurya805@gmail.com', 'Name');		
 	$mail->addAddress('lalitkumar9710888@gmail.com');
 	// $mail->addAddress('receiver2@gfg.com', 'Name');
 	
