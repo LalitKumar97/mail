@@ -1,20 +1,40 @@
+
+
 <?php
-//get data from form  
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'vendor/autoload.php';
 
 $name = $_POST['name'];
 $email= $_POST['email'];
 $message= $_POST['message'];
-$to = "lalitkumar9710888@gmail.com";
-$subject = "Mail From website local";
 $txt ="Name = ". $name . "\r\n  Email = " . $email . "\r\n Message =" . $message;
-$headers = "From: lalitkumar971088@gmail.com" . "\r\n";
+$mail = new PHPMailer(true);
 
-if($email!=NULL){
-    mail($to,$subject,$txt,$headers);
+try {
+	$mail->SMTPDebug = 2;									
+	$mail->isSMTP();											
+	$mail->Host	 = 'smtp.gmail.com;';					
+	$mail->SMTPAuth = true;							
+	$mail->Username = 'lalitkumar971088@gmail.com';				
+	$mail->Password = 'Maurya@123';						
+	$mail->SMTPSecure = 'tls';							
+	$mail->Port	 = 587;
+
+	$mail->setFrom('.com', 'Name');		
+	$mail->addAddress('lalitkumar9710888@gmail.com');
+	// $mail->addAddress('receiver2@gfg.com', 'Name');
+	
+	$mail->isHTML(true);								
+	$mail->Subject = 'New User Details';
+	$mail->Body = $txt;
+	// $mail->AltBody = 'Body in plain text for non-HTML mail clients';
+	$mail->send();
+	echo "Mail has been sent successfully!";
+} catch (Exception $e) {
+	echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
-else{
-    alert("failed")
-}
-// //redirect
-// header("Location:thankyou.html");
+
 ?>
